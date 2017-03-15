@@ -66,7 +66,6 @@ function handleError(res, statusCode) {
 // Gets a list of Blogs
 export function index(req, res) {
   return Blog.find()
-    .populate('posts')
     .exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
@@ -74,7 +73,9 @@ export function index(req, res) {
 
 // Gets a single Blog from the DB
 export function show(req, res) {
-  return Blog.findById(req.params.id).exec()
+  return Blog.findById(req.params.id)
+    .populate('posts')
+    .exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
