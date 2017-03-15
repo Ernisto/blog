@@ -9,7 +9,7 @@ import config from './environment/';
 
 export default function seedDatabaseIfNeeded() {
   if(config.seedDB) {
-    
+
 
     Thing.find({}).remove()
       .then(() => {
@@ -44,7 +44,5 @@ export default function seedDatabaseIfNeeded() {
     })
     .then(() => console.log('finished populating things'))
     .catch(err => console.log('error populating things', err));
-
-    });
   }
 }
