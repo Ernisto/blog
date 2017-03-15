@@ -11,6 +11,7 @@ import uiRouter from 'angular-ui-router';
 import uiBootstrap from 'angular-ui-bootstrap';
 // import ngMessages from 'angular-messages';
 import BlogComponent from './blog/blog.component';
+import BlogService from './blog/blogService/blogService.service';
 
 
 import {
@@ -27,7 +28,7 @@ import socket from '../components/socket/socket.service';
 import './app.scss';
 
 angular.module('blogApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-  uiBootstrap, navbar, footer, main, constants, socket, util, BlogComponent
+  uiBootstrap, navbar, footer, main, constants, socket, util, BlogComponent, BlogService
 ])
   .config(routeConfig);
 

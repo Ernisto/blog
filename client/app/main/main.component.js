@@ -7,9 +7,13 @@ export class MainController {
   newThing = '';
 
   /*@ngInject*/
-  constructor($http, $scope, socket) {
+  constructor($http, $scope, socket, blogSvr) {
     this.$http = $http;
     this.socket = socket;
+
+    this.blogSvr = blogSvr;
+    this.blogSvr.get()
+      .then(res => this.blogs = res.data);
 
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('thing');
@@ -42,6 +46,7 @@ export default angular.module('blogApp.main', [uiRouter])
   .config(routing)
   .component('main', {
     template: require('./main.html'),
-    controller: MainController
+    controller: MainController,
+    controllerAs: 'mainCtrl'
   })
   .name;

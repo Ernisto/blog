@@ -65,7 +65,9 @@ function handleError(res, statusCode) {
 
 // Gets a list of Blogs
 export function index(req, res) {
-  return Blog.find().exec()
+  return Blog.find()
+    .populate('posts')
+    .exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
