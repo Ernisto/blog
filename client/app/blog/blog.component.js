@@ -5,10 +5,15 @@ const uiRouter = require('angular-ui-router');
 
 import routes from './blog.routes';
 
+
 export class BlogComponent {
   /*@ngInject*/
-  constructor() {
-    this.message = 'Hello';
+  constructor(blogSvr, $stateParams) {
+    'ngInject';
+
+    this.blogSvr = blogSvr;
+    this.blogSvr.getById($stateParams.blogId)
+      .then(res => this.blog = res.data);
   }
 }
 

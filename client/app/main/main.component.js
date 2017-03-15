@@ -7,13 +7,10 @@ export class MainController {
   newThing = '';
 
   /*@ngInject*/
-  constructor($http, $scope, socket, blogSvr) {
-    this.$http = $http;
+  constructor($scope, socket, blogSvr) {
     this.socket = socket;
 
     this.blogSvr = blogSvr;
-    this.blogSvr.get()
-      .then(res => this.blogs = res.data);
 
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('thing');
@@ -21,11 +18,8 @@ export class MainController {
   }
 
   $onInit() {
-    this.$http.get('/api/things')
-      .then(response => {
-        this.awesomeThings = response.data;
-        this.socket.syncUpdates('thing', this.awesomeThings);
-      });
+    this.blogSvr.get()
+      .then(res => this.blogs = res.data);
   }
 
   addThing() {

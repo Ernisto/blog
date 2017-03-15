@@ -1,1 +1,26 @@
-<div>This is the blog view.</div>
+<div class="container">
+  <h1>{{blogCtrl.blog.title}}</h1>
+
+  <table class="posts">
+    <thead>
+    <tr>
+      <th>Content</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="post in blogCtrl.blog.posts">
+      <td class="col-sm-8">
+        {{post.content}}
+      </td>
+      <td class="col-sm-2">
+        <div class="btn btn-sm btn-success">Edit</div>
+      </td>
+      <td class="col-sm-2">
+        <div class="btn btn-sm btn-danger">Delete</div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
